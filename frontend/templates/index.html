@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b18">
+  <title>TypeBlaze — Typing Speed Tester</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="#home" aria-label="TypeBlaze home"><span class="brand-mark">T</span> Type<span>Blaze</span></a>
+    <div class="nav-links"><a href="#home">Home</a><a href="#about">About</a><a href="#test">Test</a></div>
+  </nav>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">BEAT YOUR PERSONAL BEST</div>
+        <h1>How fast can you <span>type?</span></h1>
+        <p>Sharpen your speed, improve your accuracy, and turn every keystroke into momentum.</p>
+        <a class="primary-button" href="#test">Start typing <span>→</span></a>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="speed-ring"><strong>92</strong><small>WPM</small></div>
+        <div class="mini-stats"><span><b>98%</b> Accuracy</span><span><b>0.4s</b> Reaction</span></div>
+      </div>
+    </section>
+
+    <section id="test" class="test-section">
+      <div id="loading" class="loading" hidden><span></span> Preparing test…</div>
+      <div id="error-banner" class="error-banner" role="alert" hidden></div>
+
+      <div id="setup" class="setup-card">
+        <div class="section-heading"><span>01</span><div><small>READY WHEN YOU ARE</small><h2>Configure your test</h2></div></div>
+        <div class="option-grid">
+          <fieldset><legend>Difficulty</legend>
+            <div class="segmented difficulty-options">
+              <label><input type="radio" name="difficulty" value="easy" checked><span>Easy</span></label>
+              <label><input type="radio" name="difficulty" value="medium"><span>Medium</span></label>
+              <label><input type="radio" name="difficulty" value="hard"><span>Hard</span></label>
+            </div>
+          </fieldset>
+          <fieldset><legend>Duration</legend>
+            <div class="segmented duration-options">
+              <label><input type="radio" name="duration" value="30" checked><span>30 sec</span></label>
+              <label><input type="radio" name="duration" value="60"><span>60 sec</span></label>
+              <label><input type="radio" name="duration" value="120"><span>120 sec</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <button id="start-button" class="primary-button wide" type="button">Start Test <span>→</span></button>
+      </div>
+
+      <div id="test-area" class="test-card" hidden>
+        <div class="test-topbar">
+          <div><small>TIME REMAINING</small><strong id="timer">0:30</strong></div>
+          <button id="restart-button" class="ghost-button" type="button">↻ Restart</button>
+        </div>
+        <div class="progress-track"><div id="progress" class="progress-bar"></div></div>
+        <div class="live-stats">
+          <div><strong id="live-wpm">0</strong><small>WPM</small></div>
+          <div><strong id="live-accuracy">100%</strong><small>ACCURACY</small></div>
+          <div><strong id="correct-count">0</strong><small>CORRECT</small></div>
+          <div><strong id="incorrect-count">0</strong><small>INCORRECT</small></div>
+        </div>
+        <div id="passage" class="passage" aria-label="Typing passage"></div>
+        <textarea id="typing-input" rows="4" maxlength="5000" aria-label="Type the passage here" spellcheck="false" autocomplete="off" placeholder="Start typing here…"></textarea>
+      </div>
+
+      <div id="results" class="results-card" hidden>
+        <div class="result-heading"><div class="eyebrow">TEST COMPLETE</div><h2>Your performance</h2></div>
+        <div class="result-grid">
+          <article class="result-primary"><small>NET SPEED</small><strong id="result-wpm">0</strong><span>WPM</span></article>
+          <article><small>ACCURACY</small><strong id="result-accuracy">0%</strong></article>
+          <article><small>GROSS WPM</small><strong id="result-gross">0</strong></article>
+          <article><small>ERRORS</small><strong id="result-errors">0</strong></article>
+        </div>
+        <p id="feedback" class="feedback"></p>
+        <div class="result-actions"><button id="try-again" class="primary-button" type="button">Try Again</button><button id="return-home" class="ghost-button" type="button">Change settings</button></div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="section-heading"><span>02</span><div><small>THE SCIENCE OF SPEED</small><h2>How TypeBlaze scores you</h2></div></div>
+      <div class="about-grid">
+        <article><h3>Gross WPM</h3><p>Characters typed ÷ 5 ÷ elapsed minutes. A standard word is five characters.</p></article>
+        <article><h3>Net WPM</h3><p>Gross WPM minus incorrect characters ÷ 5. The result cannot fall below zero.</p></article>
+        <article><h3>Accuracy</h3><p>Correct character positions ÷ all submitted characters × 100, including extra characters.</p></article>
+      </div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
